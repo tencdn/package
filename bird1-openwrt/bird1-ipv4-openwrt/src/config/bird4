@@ -1,5 +1,5 @@
 config bird 'bird'
-    option use_UCI_config '1'
+    option use_UCI_config '0'
         #Caution! Enabling this option, Bird will translate this
         #UCI file and use it instead of /etc/bird4.conf
     option UCI_config_file '/tmp/bird4.conf'
