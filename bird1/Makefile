@@ -194,7 +194,7 @@ define Package/bird1-ipv$(2)/install
 	$(INSTALL_DATA) ./files/bird$(2).conf $$(1)/etc/
 	$(INSTALL_DIR)  $$(1)/etc/init.d
 	$(INSTALL_BIN)  ./files/bird$(2).init $$(1)/etc/init.d/bird$(2)
-	echo "This is bird1-ipv$(2)/install!" >> /etc/test.ipk.log
+	echo "This is bird1-ipv$(2)/install!" >> $$(1)/etc/test.ipk.log
 
 endef
 
