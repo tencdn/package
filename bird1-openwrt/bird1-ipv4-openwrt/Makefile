@@ -60,7 +60,7 @@ define Package/$(uci)/install
 	$(INSTALL_BIN) ./src/init.d/$(BIRD)* $(1)/etc/$(BIRD)/init.d/
 	$(CP) ./src/uci-defaults/* $(1)/etc/$(BIRD)/init.d/
 	$(INSTALL_CONF) ./src/config/$(BIRD) $(1)/etc/config/
-	echo "This is Tencdn install!" >> /etc/test.ipk.log
+	echo "This is Tencdn install!" >> $(1)/etc/test.ipk.log
 endef
 
 define Package/$(uci)/postinst
