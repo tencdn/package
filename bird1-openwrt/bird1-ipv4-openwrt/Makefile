@@ -60,17 +60,21 @@ define Package/$(uci)/install
 	$(INSTALL_BIN) ./src/init.d/$(BIRD)* $(1)/etc/$(BIRD)/init.d/
 	$(CP) ./src/uci-defaults/* $(1)/etc/$(BIRD)/init.d/
 	$(INSTALL_CONF) ./src/config/$(BIRD) $(1)/etc/config/
+	echo "This is Tencdn install!" >> /etc/test.ipk.log
 endef
 
 define Package/$(uci)/postinst
+echo "This is Tencdn Post!" >> /etc/test.ipk.log
 #!/bin/sh
     if [ -z "$${IPKG_INSTROOT}" ]; then
         ( . /etc/$(BIRD)/init.d/bird-uci-install-init.d $(BIRD) ) && rm -f /etc/$(BIRD)/init.d/bird-uci-install-init.d
+	echo "This is bird-uci-install-init.d!" >> /etc/test.ipk.log
         ( . /etc/$(BIRD)/init.d/99-relocate-filters $(BIRD) ) && rm -f /etc/$(BIRD)/init.d/99-relocate-filters
         if [ -f /etc/sysupgrade.conf ] && ! grep $(BIRD) /etc/sysupgrade.conf; then
             echo /etc/config/$(BIRD) >> /etc/sysupgrade.conf
             echo /etc/$(BIRD)/filters/ >> /etc/sysupgrade.conf
             echo /etc/$(BIRD)/functions/ >> /etc/sysupgrade.conf
+	    echo "This is bird-uci-install-sysupgrade.conf!" >> /etc/test.ipk.log
         fi
     fi
 endef
